@@ -1,0 +1,16 @@
+{
+  "name": "calibrate",
+  "version": "0.0.2",
+  "description": "Provide a standard json output for RESTful APIs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "calibrate",
+    "rest",
+    "api"
+  ],
+  "author": "John Brett",
+  "license": "MIT"
+}
