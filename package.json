@@ -1,6 +1,6 @@
 {
   "name": "calibrate",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Provide a standard json output for RESTful APIs",
   "main": "index.js",
   "scripts": {
@@ -12,5 +12,8 @@
     "api"
   ],
   "author": "John Brett",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "boom": "~2.5.1"
+  }
 }
