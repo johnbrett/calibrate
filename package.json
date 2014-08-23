@@ -1,10 +1,10 @@
 {
   "name": "calibrate",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Provide a standard json output for RESTful APIs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node ./node_modules/lab/bin/lab -c"
   },
   "keywords": [
     "calibrate",
@@ -15,5 +15,8 @@
   "license": "MIT",
   "dependencies": {
     "boom": "~2.5.1"
+  },
+  "devDependencies": {
+    "lab": "4.1.0"
   }
 }
