@@ -1,4 +1,4 @@
-Calibrate
+Calibrate [![Build Status](https://travis-ci.org/johnbrett/calibrate.svg?branch=master)](https://travis-ci.org/johnbrett/calibrate) [![Dependency Status](https://david-dm.org/johnbrett/calibrate.svg)](https://david-dm.org/johnbrett/calibrate)
 =========
 
 Simple plugin for providing uniform json output for RESTful APIs.
