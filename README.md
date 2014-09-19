@@ -30,7 +30,7 @@ e.g common APIs.
         "name": "John"
     }],
     "meta": {
-        "items":1
+        "items": 1
     }
 }
 ```
