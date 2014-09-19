@@ -3,7 +3,7 @@ Calibrate [![Build Status](https://travis-ci.org/johnbrett/calibrate.svg?branch=
 
 Simple plugin for providing uniform json output for RESTful APIs.
 
-*Status: Still in very early stages, allow a week or two for API to stabilise.* 
+*Status: Still in very early stages, but will adhere to Semver when ready, please allow some time for API to stablise, and I recommend waiting til 1.0.0 for production use.* 
 
 Use Calibrate to keep your json output consistent:
 
