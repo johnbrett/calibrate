@@ -17,6 +17,6 @@
     "boom": "~2.5.1"
   },
   "devDependencies": {
-    "lab": "4.1.0"
+    "lab": "4.5.1"
   }
 }
