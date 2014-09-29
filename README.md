@@ -38,12 +38,13 @@ e.g common APIs.
 Usage: just call to calibrate your response object, no config required. 
 
 API:
-    calibrate([error], [data], [options]) - returns calibrated json object
+    calibrate([error], [data], [meta], [options]) - returns calibrated json object
 
 Behaviour:
 - [Boom](https://www.npmjs.org/package/boom) error object: Passed object as is
 - JS Error object: Will wrap error with statusCode and message before output
 - Data (No error): Will wrap with statusCode before output
+- Adds empty meta object if not specified
 
 Example:
 ```javascript
@@ -55,7 +56,7 @@ server.route({
     method: 'GET',
     path: '/',
     handler: function (request, reply) {
-        reply(Calibrate(null, 'Hello, world!'));
+        reply(Calibrate(null, 'Hello, world!', { items: 1 }));
     }
 });
 
