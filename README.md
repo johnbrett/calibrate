@@ -66,7 +66,6 @@ server.start(function () {
 ```
 
 Additional Features (to be added):
-- Escape all data by default
 - Better formatting of non-Boom error objects
 
 License MIT
