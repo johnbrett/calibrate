@@ -55,4 +55,36 @@ describe('Calibrate', function () {
     done()
   })
 
+  it('adds meta if defined', function(done) {
+
+    var expected_response = JSON.stringify({
+      statusCode: 200,
+      data: {
+        message: 'test'
+      },
+      meta: {
+        items: 1
+      }
+    });
+
+    expect(JSON.stringify(Calibrate(null, { message: 'test'}, {items: 1 }))).to.equal(expected_response);
+    done()
+  })
+
+  it('adds accepts an object parameter', function(done) {
+
+    var expected_response = JSON.stringify({
+      statusCode: 200,
+      data: {
+        message: 'test'
+      },
+      meta: {
+        items: 1
+      }
+    });
+
+    expect(JSON.stringify(Calibrate(null, { message: 'test'}, {items: 1 }, {}))).to.equal(expected_response);
+    done()
+  })
+
 });
