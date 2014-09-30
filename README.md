@@ -1,9 +1,9 @@
 Calibrate [![Build Status](https://travis-ci.org/johnbrett/calibrate.svg?branch=master)](https://travis-ci.org/johnbrett/calibrate) [![Dependency Status](https://david-dm.org/johnbrett/calibrate.svg)](https://david-dm.org/johnbrett/calibrate)
 =========
 
-Simple plugin for providing uniform json output for RESTful APIs.
+Simple plugin for providing uniform json output for RESTful APIs, with error handling. 
 
-*Status: Still in very early stages, but will adhere to Semver when ready, please allow some time for API to stablise, and I recommend waiting til 1.0.0 for production use.* 
+*Status: Still in early stages, but will adhere to Semver when ready and will remain 100% unit tested at all times. Please allow some time for API to stablise, and I recommend waiting til 1.0.0 for production use. Any feature requests / bug notifications please open and issues, or a pull request with a failing unit test would be great. Please star if you using this module so I know where to focus my time spent on open source work.* 
 
 Use Calibrate to keep your json output consistent:
 
