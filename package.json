@@ -14,10 +14,11 @@
   "author": "John Brett",
   "license": "MIT",
   "dependencies": {
-    "boom": "~2.5.1"
+    "boom": "~2.6.0"
   },
   "devDependencies": {
-    "lab": "4.5.2"
+    "lab": "5.0.1",
+    "code": "1.x.x"
   },
   "directories": {
     "test": "test"
