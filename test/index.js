@@ -1,6 +1,6 @@
 var Code = require('code');
 var Lab = require('lab');
-var Calibrate = require('../');
+var Calibrate = require('../index.js');
 var Boom = require('boom')
 var lab = exports.lab = Lab.script();
 
@@ -15,6 +15,7 @@ describe('Calibrate', function () {
   var sampleError = JSON.stringify(Boom.badImplementation().output);
   var sampleErrorWithMessage = JSON.stringify(Boom.badImplementation('sample message').output);
   var boomNotFound = JSON.stringify(Boom.notFound().output);
+  var boomNotFoundWithMessage = JSON.stringify(Boom.notFound("The resource with that ID does not exist or has already been deleted.").output);
   var validOutput = JSON.stringify({
     statusCode: 200,
     data: {
@@ -52,7 +53,21 @@ describe('Calibrate', function () {
   })
 
   it('returns not found for null data', function(done) {
-    expect(JSON.stringify(Calibrate(null, null).output)).to.equal(boomNotFound);
+    expect(JSON.stringify(Calibrate(null, null).output)).to.equal(boomNotFoundWithMessage);
+    done()
+  })
+
+  it('accepts a default return string', function(done) {
+    expect(JSON.stringify(Calibrate(null, null, null, {return_string: 'test'}).output))
+    .to
+    .equal(JSON.stringify(Boom.notFound('test').output));
+    done()
+  })
+
+  it('accepts a default context for not found errors', function(done) {
+    expect(JSON.stringify(Calibrate(null, null, null, {context: 'user'}).output))
+    .to
+    .equal(JSON.stringify(Boom.notFound('The user resource with that ID does not exist or has already been deleted.').output));
     done()
   })
 
