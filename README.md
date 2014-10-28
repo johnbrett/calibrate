@@ -46,8 +46,10 @@ API:
 Behaviour:
 - [Boom](https://www.npmjs.org/package/boom) error object: Passed object as is
 - JS Error object: Will wrap error with statusCode and message before output
-- Data (No error): Will wrap with statusCode before output
+- Data (No error): Will wrap with statusCode before output. If null or undefined, will return a 'not found' 404 error.
 - Adds empty meta object if not specified
+- Options accepts
+    - context: adds context to notFound error message
 
 Example:
 ```javascript
@@ -59,7 +61,20 @@ server.route({
     method: 'GET',
     path: '/',
     handler: function (request, reply) {
-        reply(Calibrate(null, 'Hello, world!', { items: 1 }));
+        reply(Calibrate(null, 'Hello, world!', { items: 1 })); // returns formatted output as above
+    }
+});
+
+server.route({
+    method: 'GET',
+    path: '/user',
+    handler: function (request, reply) {
+        var user;
+        
+        // Will return 404 with message:
+        //      "The user resource with that ID does not exist or was already deleted." 
+        // since user is undefined, Calibrate handles the error.
+        reply(Calibrate(null, user, {}, {context: 'user')); 
     }
 });
 
