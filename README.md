@@ -41,7 +41,7 @@ e.g common APIs.
 Usage: just call to calibrate your response object, no config required. 
 
 API:
-    calibrate([error], [data], [meta], [options]) - returns calibrated json object
+    calibrate(data [, meta, options]) - returns calibrated json object
 
 Behaviour:
 - [Boom](https://www.npmjs.org/package/boom) error object: Passed object as is
@@ -82,8 +82,5 @@ server.start(function () {
     console.log('Server running at:', server.info.uri);
 });
 ```
-
-Additional Features (to be added):
-- Better formatting of non-Boom error objects
 
 License MIT
