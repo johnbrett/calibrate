@@ -29,6 +29,12 @@ describe('Calibrate', function () {
     done();
   });
 
+  it('wraps non-boom errors', function(done) {
+    var response = Calibrate(new Error());
+    expect(JSON.stringify(response.output)).to.equal(sampleError);
+    done();
+  })
+
   it('doesn\'t wrap boom errors', function(done) {
     var response = Calibrate(Boom.notFound());
     expect(JSON.stringify(response.output)).to.equal(boomNotFound);
