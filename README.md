@@ -63,22 +63,34 @@ server.route({
     method: 'GET',
     path: '/',
     handler: function (request, reply) {
-        reply(Calibrate(null, 'Hello, world!', { items: 1 })); // returns formatted output as above
+        reply(Calibrate('Hello, world!', { items: 1 })); // returns formatted output as above
     }
 });
 
-server.route({
-    method: 'GET',
-    path: '/user',
-    handler: function (request, reply) {
-        var user;
-        
-        // Will return 404 with message:
-        //      "The user resource with that ID does not exist or was already deleted." 
-        // since user is undefined, Calibrate handles the error.
-        reply(Calibrate(null, user, {}, {context: 'user')); 
+server.route([
+    {
+        method: 'GET',
+        path: '/user',
+        handler: function (request, reply) {
+            var user;
+            
+            // Will return 404 with message:
+            //      "The user resource with that ID does not exist or was already deleted." 
+            // since user is undefined, Calibrate handles the error.
+            reply(Calibrate(user, {}, {context: 'user')); 
+        }
+    },
+    {
+        method: 'GET,
+        path: '/user/{id}',
+        handler: function(request, reply) {
+            User
+                .findById(request.params.id)
+                .then(Calibrate)
+                .then(reply)
+        }
     }
-});
+]);
 
 server.start(function () {
     console.log('Server running at:', server.info.uri);
