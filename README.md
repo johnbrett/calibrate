@@ -3,7 +3,9 @@ Calibrate [![Build Status](https://travis-ci.org/johnbrett/calibrate.svg?branch=
 
 Micro library for providing uniform json output for RESTful APIs, with error handling. 
 
-*Status: Still in early stages, but will adhere to Semver when ready and will remain 100% unit tested at all times. Please allow some time for API to stablise, and I recommend waiting til 1.0.0 for production use. Any feature requests / bug notifications please open and issues, or a pull request with a failing unit test would be great.* 
+**API Change: Error parameter has been removed. Instead, pass error in as data parameter if error and it will be wrapped or output if Boom as before. Check promise example below. Any questions on this please raise an issue.**
+
+If you're using this module any have any questions, feel free to raise an issue or contact me on twitter if you have any questions @\_johnbrett\_. Feature requests and bug reports welcome.
 
 *Please star if you using this module so I know where to focus my time spent on open source work.*
 
