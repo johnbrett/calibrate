@@ -1,7 +1,7 @@
 {
   "name": "calibrate",
-  "version": "0.0.10",
-  "description": "Provide a standard json output for RESTful APIs",
+  "version": "0.1.0",
+  "description": "Standard JSON outputs for RESTful APIs",
   "main": "index.js",
   "scripts": {
     "test": "node ./node_modules/lab/bin/lab -c"
@@ -14,7 +14,8 @@
   "author": "John Brett",
   "license": "MIT",
   "dependencies": {
-    "boom": "~2.6.0"
+    "boom": "~2.6.0",
+    "isdefined": "^0.1.0"
   },
   "devDependencies": {
     "lab": "5.0.1",
