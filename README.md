@@ -12,9 +12,9 @@ Feel free to raise an issue or contact me on twitter if you have any questions @
 var Calibrate = require('calibrate')
 
 /**
-* Checks whether data is an error, and calls Calibrate.error or Calibrate.reponse
+* Checks whether data is an error, calls either Calibrate.error or Calibrate.reponse
 **/
-Calibrate(data)          // returns calibrated json object
+Calibrate(data [, meta])
 
 // Valid response structure:
 {
@@ -36,7 +36,7 @@ Calibrate(data)          // returns calibrated json object
 * If null or undefined
 *  -  returns a Boom notFound error object
 **/
-Calibrate.response(data) // assumes valid response, returns calibrated object or 404
+Calibrate.response(data [, meta])
 
 /**
 * If is a Boom Error object
@@ -44,7 +44,7 @@ Calibrate.response(data) // assumes valid response, returns calibrated object or
 * If is a non Boom Error Object
 *  - returns a Boom badImplementaion Error Object
 **/
-Calibrate.error(data)    // assumes error, 
+Calibrate.error(data) 
 ```
 
 Example in Hapijs:
@@ -60,20 +60,21 @@ server.route([
         handler: function(request, reply) {  // Using Promises
             User
                 .findById(request.params.id) 
-                .then(Calibrate.response) // Formats Response
-                .catch(Calibrate.error)   // Errors caught and wrapped
-                .then(reply)              // Return Calibrated Response
+                .then(Calibrate.response)   // Formats Response
+                .catch(Calibrate.error)     // Errors caught and wrapped
+                .then(reply)                // Return Calibrated Response
         }
     },
     {
         method: 'GET',
         path: '/team/{id}',
-        handler: function (request, reply) { // Using Callbacks
-            Team.findbyId(request.params.id, function returnUser(err, team) {
-                if(err) {                 // Catch any errors
-                    reply(Calibrate(err)  // Errors caught and wrapped 
+        handler: function (request, reply) {        // Using Callbacks
+        
+            Team.findById(request.params.id, function returnUser(err, team) {
+                if(err) {                           // Catch any errors
+                    reply(Calibrate.error(err))     // Errors caught and wrapped 
                 } else {
-                    reply(Calibrate(team) // Return Calibrate Response
+                    reply(Calibrate.response(team)) // Return Calibrate Response
                 }
             })
         }
