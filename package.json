@@ -1,24 +1,32 @@
 {
   "name": "calibrate",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Standard JSON outputs for RESTful APIs",
   "main": "index.js",
   "scripts": {
     "test": "node ./node_modules/lab/bin/lab -c"
   },
   "keywords": [
-    "calibrate",
+    "json",
+    "JSON",
+    "response",
+    "object",
+    "uniform",
     "rest",
-    "api"
+    "api",
+    "promise",
+    "hapi",
+    "calibrate",
+    "format"
   ],
   "author": "John Brett",
   "license": "MIT",
   "dependencies": {
-    "boom": "~2.6.0",
-    "isdefined": "^0.1.0"
+    "boom": "~2.6.x",
+    "isdefined": "~1.x.x"
   },
   "devDependencies": {
-    "lab": "5.0.1",
+    "lab": "~5.1.x",
     "code": "1.x.x"
   },
   "directories": {
