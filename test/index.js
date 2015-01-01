@@ -1,7 +1,8 @@
 var Code = require('code');
 var Lab = require('lab');
 var Calibrate = require('../index.js');
-var Boom = require('boom')
+var Boom = require('boom');
+var Hapi = require('hapi');
 var lab = exports.lab = Lab.script();
 
 var expect = Code.expect;
@@ -95,6 +96,32 @@ describe('Calibrate', function () {
 
     expect(JSON.stringify(Calibrate({ message: 'test'}, {items: 1 }, {}))).to.equal(expected_response);
     done()
+  })
+
+  it('decorates the hapi reply interface', function(done) {
+
+    var server = new Hapi.Server();
+    server.connection();
+    server.register({
+      register: Calibrate.decorate
+    }, function(){
+
+      server.route({
+        method: 'GET',
+        path: '/',
+        config: {
+          handler: function(response, reply) {
+            reply.calibrate({message: 'test'})
+          }
+        }
+      })
+
+      server.inject({ method: 'GET', url: '/' }, function(res) {
+        expect(res.payload).to.equal(validOutput)
+        done()
+      })
+    })
+
   })
 
 });

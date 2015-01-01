@@ -1,6 +1,6 @@
 {
   "name": "calibrate",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "Standard JSON outputs for RESTful APIs",
   "main": "index.js",
   "scripts": {
@@ -27,7 +27,8 @@
   },
   "devDependencies": {
     "lab": "~5.1.x",
-    "code": "1.x.x"
+    "code": "1.x.x",
+    "hapi": "8.0.0"
   },
   "directories": {
     "test": "test"
