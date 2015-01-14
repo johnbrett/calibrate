@@ -94,13 +94,13 @@ server.register([
         {
             method: 'GET',
             path: '/team/{id}',
-            handler: function (request, reply) {        // Using Callbacks
+            handler: function (request, reply) {    // Using new decorator function
             
                 Team.findById(request.params.id, function returnUser(err, team) {
                     if(err) {                           // Catch any errors
-                        reply.calibrate(err)            // New reply decorator function 
+                        reply.calibrate(err)            // Using decorator function 
                     } else {
-                        reply.calibrate(team)           // New reply decorator function
+                        reply.calibrate(team)           // Using decorator function
                     }
                 })
             }
