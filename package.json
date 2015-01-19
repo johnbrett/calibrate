@@ -26,9 +26,9 @@
     "isdefined": "~1.x.x"
   },
   "devDependencies": {
-    "lab": "~5.1.x",
+    "lab": "~5.2.x",
     "code": "1.x.x",
-    "hapi": "8.0.0"
+    "hapi": "8.1.0"
   },
   "directories": {
     "test": "test"
