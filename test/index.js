@@ -14,7 +14,7 @@ var it = lab.it;
 var sampleError = JSON.stringify(Boom.badImplementation().output);
 var sampleErrorWithMessage = JSON.stringify(Boom.badImplementation('sample message').output);
 var boomNotFound = JSON.stringify(Boom.notFound().output);
-var boomNotFoundWithMessage = JSON.stringify(Boom.notFound("The resource with that ID does not exist or has already been deleted.").output);
+var boomNotFoundWithMessage = JSON.stringify(Boom.notFound('The resource with that ID does not exist or has already been deleted.').output);
 var validOutput = JSON.stringify({
   statusCode: 200,
   data: {
@@ -34,7 +34,7 @@ describe('Calibrate', function () {
     var response = Calibrate(new Error());
     expect(JSON.stringify(response.output)).to.equal(sampleError);
     done();
-  })
+  });
 
   it('doesn\'t wrap boom errors', function(done) {
     var response = Calibrate(Boom.notFound());
@@ -44,31 +44,38 @@ describe('Calibrate', function () {
 
   it('formats valid responses', function(done) {
     expect(JSON.stringify(Calibrate({'message': 'test'}))).to.equal(validOutput);
-    done()
-  })
+    done();
+  });
 
   it('returns not found for null data', function(done) {
     expect(JSON.stringify(Calibrate(null).output)).to.equal(boomNotFoundWithMessage);
-    done()
-  })
+    done();
+  });
 
   it('accepts a default return string', function(done) {
     expect(JSON.stringify(Calibrate(null, null, {return_string: 'test'}).output))
     .to
     .equal(JSON.stringify(Boom.notFound('test').output));
-    done()
-  })
+    done();
+  });
+
+  it('accepts a default return string in camelcase', function(done) {
+    expect(JSON.stringify(Calibrate(null, null, {returnString: 'test'}).output))
+    .to
+    .equal(JSON.stringify(Boom.notFound('test').output));
+    done();
+  });
 
   it('accepts a default context for not found errors', function(done) {
     expect(JSON.stringify(Calibrate(null, null, {context: 'user'}).output))
     .to
     .equal(JSON.stringify(Boom.notFound('The user resource with that ID does not exist or has already been deleted.').output));
-    done()
-  })
+    done();
+  });
 
   it('adds meta if defined', function(done) {
 
-    var expected_response = JSON.stringify({
+    var expectedResponse = JSON.stringify({
       statusCode: 200,
       data: {
         message: 'test'
@@ -78,13 +85,13 @@ describe('Calibrate', function () {
       }
     });
 
-    expect(JSON.stringify(Calibrate({ message: 'test'}, {items: 1 }))).to.equal(expected_response);
-    done()
-  })
+    expect(JSON.stringify(Calibrate({ message: 'test'}, {items: 1 }))).to.equal(expectedResponse);
+    done();
+  });
 
   it('adds accepts an object parameter', function(done) {
 
-    var expected_response = JSON.stringify({
+    var expectedResponse = JSON.stringify({
       statusCode: 200,
       data: {
         message: 'test'
@@ -94,9 +101,9 @@ describe('Calibrate', function () {
       }
     });
 
-    expect(JSON.stringify(Calibrate({ message: 'test'}, {items: 1 }, {}))).to.equal(expected_response);
-    done()
-  })
+    expect(JSON.stringify(Calibrate({ message: 'test'}, {items: 1 }, {}))).to.equal(expectedResponse);
+    done();
+  });
 
   it('decorates the hapi reply interface', function(done) {
 
@@ -111,17 +118,16 @@ describe('Calibrate', function () {
         path: '/',
         config: {
           handler: function(response, reply) {
-            reply.calibrate({message: 'test'})
+            reply.calibrate({message: 'test'});
           }
         }
-      })
+      });
 
       server.inject({ method: 'GET', url: '/' }, function(res) {
-        expect(res.payload).to.equal(validOutput)
-        done()
-      })
-    })
-
-  })
+        expect(res.payload).to.equal(validOutput);
+        done();
+      });
+    });
+  });
 
 });
