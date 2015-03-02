@@ -26,7 +26,7 @@ var validOutput = JSON.stringify({
 describe('Calibrate', function () {
 
   it('returns a function when reuired', function(done) {
-    expect(typeof Calibrate === 'function');
+    expect(typeof Calibrate).to.equal('function');
     done();
   });
 
