@@ -24,14 +24,13 @@
   "author": "John Brett",
   "license": "MIT",
   "dependencies": {
-    "boom": "~2.6.x",
-    "code": "^1.3.0",
+    "boom": "~2.8.x",
     "isdefined": "~1.x.x"
   },
   "devDependencies": {
     "lab": "~5.x.x",
     "code": "1.x.x",
-    "hapi": "8.x.0"
+    "hapi": "8.x.x"
   },
   "directories": {
     "test": "test"
