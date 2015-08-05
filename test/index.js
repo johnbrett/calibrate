@@ -102,10 +102,10 @@ describe('Calibrate', function () {
         var expectedResponse = JSON.stringify({
             statusCode: 200,
             data: {
-              message: 'test'
+                message: 'test'
             },
             meta: {
-              items: 1
+                items: 1
             }
         });
 
@@ -122,14 +122,14 @@ describe('Calibrate', function () {
         }, function () {
 
             server.route({
-              method: 'GET',
-              path: '/',
-              config: {
-                handler: function (response, reply) {
+                method: 'GET',
+                path: '/',
+                config: {
+                    handler: function (response, reply) {
 
-                    reply.calibrate({ message: 'test' });
+                        reply.calibrate({ message: 'test' });
+                    }
                 }
-              }
             });
 
             server.inject({ method: 'GET', url: '/' }, function (res) {
