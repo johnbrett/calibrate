@@ -6,13 +6,10 @@ var Hapi = require('hapi');
 var lab = exports.lab = Lab.script();
 
 var expect = Code.expect;
-var before = lab.before;
-var after = lab.after;
 var describe = lab.describe;
 var it = lab.it;
 
 var sampleError = JSON.stringify(Boom.badImplementation().output);
-var sampleErrorWithMessage = JSON.stringify(Boom.badImplementation('sample message').output);
 var boomNotFound = JSON.stringify(Boom.notFound().output);
 var boomNotFoundWithMessage = JSON.stringify(Boom.notFound('The resource with that ID does not exist or has already been deleted.').output);
 var validOutput = JSON.stringify({
