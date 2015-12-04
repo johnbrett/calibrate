@@ -28,7 +28,7 @@
     "isdefined": "1.0.1"
   },
   "devDependencies": {
-    "lab": "5.18.1",
+    "lab": "8.0.0",
     "code": "1.5.0",
     "hapi": "8.8.1"
   },
