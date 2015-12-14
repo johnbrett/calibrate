@@ -30,7 +30,7 @@
   "devDependencies": {
     "lab": "5.18.1",
     "code": "1.5.0",
-    "hapi": "8.8.1"
+    "hapi": "11.0.0"
   },
   "directories": {
     "test": "test"
