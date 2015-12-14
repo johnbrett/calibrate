@@ -1,21 +1,20 @@
-var Code = require('code');
-var Lab = require('lab');
-var Calibrate = require('../index.js');
-var Boom = require('boom');
-var Hapi = require('hapi');
-var lab = exports.lab = Lab.script();
+'use strict';
 
-var expect = Code.expect;
-var before = lab.before;
-var after = lab.after;
-var describe = lab.describe;
-var it = lab.it;
+const Code = require('code');
+const Lab = require('lab');
+const Calibrate = require('../index.js');
+const Boom = require('boom');
+const Hapi = require('hapi');
+const lab = exports.lab = Lab.script();
 
-var sampleError = JSON.stringify(Boom.badImplementation().output);
-var sampleErrorWithMessage = JSON.stringify(Boom.badImplementation('sample message').output);
-var boomNotFound = JSON.stringify(Boom.notFound().output);
-var boomNotFoundWithMessage = JSON.stringify(Boom.notFound('The resource with that ID does not exist or has already been deleted.').output);
-var validOutput = JSON.stringify({
+const expect = Code.expect;
+const describe = lab.describe;
+const it = lab.it;
+
+const sampleError = JSON.stringify(Boom.badImplementation().output);
+const boomNotFound = JSON.stringify(Boom.notFound().output);
+const boomNotFoundWithMessage = JSON.stringify(Boom.notFound('The resource with that ID does not exist or has already been deleted.').output);
+const validOutput = JSON.stringify({
     statusCode: 200,
     data: {
         'message': 'test'
@@ -23,41 +22,41 @@ var validOutput = JSON.stringify({
     meta: {}
 });
 
-describe('Calibrate', function () {
+describe('Calibrate', () => {
 
-    it('returns a function when reuired', function (done) {
+    it('returns a function when reuired', (done) => {
 
         expect(typeof Calibrate).to.equal('function');
         done();
     });
 
-    it('wraps non-boom errors', function (done) {
+    it('wraps non-boom errors', (done) => {
 
-        var response = Calibrate(new Error());
+        const response = Calibrate(new Error());
         expect(JSON.stringify(response.output)).to.equal(sampleError);
         done();
     });
 
-    it('doesn\'t wrap boom errors', function (done) {
+    it('doesn\'t wrap boom errors', (done) => {
 
-        var response = Calibrate(Boom.notFound());
+        const response = Calibrate(Boom.notFound());
         expect(JSON.stringify(response.output)).to.equal(boomNotFound);
         done();
     });
 
-    it('formats valid responses', function (done) {
+    it('formats valid responses', (done) => {
 
         expect(JSON.stringify(Calibrate({ 'message': 'test' }))).to.equal(validOutput);
         done();
     });
 
-    it('returns not found for null data', function (done) {
+    it('returns not found for null data', (done) => {
 
         expect(JSON.stringify(Calibrate(null).output)).to.equal(boomNotFoundWithMessage);
         done();
     });
 
-    it('accepts a default return string', function (done) {
+    it('accepts a default return string', (done) => {
 
         expect(JSON.stringify(Calibrate(null, null, { 'return_string': 'test' }).output))
         .to
@@ -65,7 +64,7 @@ describe('Calibrate', function () {
         done();
     });
 
-    it('accepts a default return string in camelcase', function (done) {
+    it('accepts a default return string in camelcase', (done) => {
 
         expect(JSON.stringify(Calibrate(null, null, { returnString: 'test' }).output))
         .to
@@ -73,7 +72,7 @@ describe('Calibrate', function () {
         done();
     });
 
-    it('accepts a default context for not found errors', function (done) {
+    it('accepts a default context for not found errors', (done) => {
 
         expect(JSON.stringify(Calibrate(null, null, { context: 'user' }).output))
         .to
@@ -81,9 +80,9 @@ describe('Calibrate', function () {
         done();
     });
 
-    it('adds meta if defined', function (done) {
+    it('adds meta if defined', (done) => {
 
-        var expectedResponse = JSON.stringify({
+        const expectedResponse = JSON.stringify({
             statusCode: 200,
             data: {
                 message: 'test'
@@ -97,9 +96,9 @@ describe('Calibrate', function () {
         done();
     });
 
-    it('adds accepts an object parameter', function (done) {
+    it('adds accepts an object parameter', (done) => {
 
-        var expectedResponse = JSON.stringify({
+        const expectedResponse = JSON.stringify({
             statusCode: 200,
             data: {
                 message: 'test'
@@ -113,13 +112,13 @@ describe('Calibrate', function () {
         done();
     });
 
-    it('decorates the hapi reply interface', function (done) {
+    it('decorates the hapi reply interface', (done) => {
 
-        var server = new Hapi.Server();
+        const server = new Hapi.Server();
         server.connection();
         server.register({
             register: Calibrate.decorate
-        }, function () {
+        }, () => {
 
             server.route({
                 method: 'GET',
@@ -132,7 +131,7 @@ describe('Calibrate', function () {
                 }
             });
 
-            server.inject({ method: 'GET', url: '/' }, function (res) {
+            server.inject({ method: 'GET', url: '/' }, (res) => {
 
                 expect(res.payload).to.equal(validOutput);
                 done();
