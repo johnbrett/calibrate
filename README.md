@@ -9,7 +9,7 @@ Feel free to raise an issue or contact me on twitter if you have any questions [
 
 **Usage:**
 ```javascript
-var Calibrate = require('calibrate')
+const Calibrate = require('calibrate')
 
 /**
 * Checks whether data is an error, calls either Calibrate.error or Calibrate.reponse
@@ -56,61 +56,70 @@ Calibrate.decorate // register as a hapijs plugin
 
 Example in Hapijs:
 ```javascript
-var Hapi = require('hapi');
-var Calibrate = require('calibrate');
-var server = new Hapi.Server();
+const Hapi = require('hapi');
+const Calibrate = require('calibrate');
+const server = new Hapi.Server();
 server.connection({ port: 3000 });
 
 server.register([
-    { register: Calibrate.decorate }            // Register decorator for third route
-],function(){
+    { register: Calibrate.decorate }    // Register decorator, used in third example
+], (err) => {
+
+    if (err) {
+        throw err;
+    }
 
     server.route([
         {
             method: 'GET',
             path: '/user/{id}',
-            handler: function(request, reply) {  // Using Promises
-                User
-                    .findById(request.params.id)
-                    .then(Calibrate.response)   // Formats Response
-                    .catch(Calibrate.error)     // Errors caught and wrapped
-                    .then(reply)                // Return Calibrated Response
+            handler: function (request, reply) {            // Using Promises
+                
+                const promise = User.findById(request.params.id)
+                    .then(Calibrate.response)               // Formats Response
+                    .catch(Calibrate.error);                // Errors caught and wrapped
+                return reply(promise);                      // Return Calibrated Response
             }
         },
         {
             method: 'GET',
             path: '/team/{id}',
-            handler: function (request, reply) {        // Using Callbacks
+            handler: function (request, reply) {            // Using Callbacks
 
-                Team.findById(request.params.id, function returnUser(err, team) {
-                    if(err) {                           // Catch any errors
-                        reply(Calibrate.error(err))     // Errors caught and wrapped
-                    } else {
-                        reply(Calibrate.response(team)) // Return Calibrate Response
+                Team.findById(request.params.id, (err, team) => {
+                    
+                    if (err) {                              // Catch any errors
+                        return reply(Calibrate.error(err)); // Errors caught and wrapped
                     }
-                })
+                    
+                    return reply(Calibrate.response(team)); // Return Calibrate Response
+                });
             }
         },
         {
             method: 'GET',
             path: '/team/{id}',
-            handler: function (request, reply) {    // Using new decorator function
+            handler: function (request, reply) {            // Using new decorator function
 
-                Team.findById(request.params.id, function returnUser(err, team) {
-                    if(err) {                           // Catch any errors
-                        reply.calibrate(err)            // Using decorator function
-                    } else {
-                        reply.calibrate(team)           // Using decorator function
+                Team.findById(request.params.id, (err, team) => {
+                    
+                    if(err) {                               // Catch any errors
+                        return reply.calibrate(err);        // Using decorator function
                     }
-                })
+                    
+                    return reply.calibrate(team);           // Using decorator function
+                });
             }
         }
     ]);
 
-    server.start(function () {
+    server.start((err) => {
+    
+        if (err) {
+            throw err;
+        }
         console.log('Server running at:', server.info.uri);
     });
-
 });
 ```
 
