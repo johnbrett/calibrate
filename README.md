@@ -3,7 +3,7 @@ Calibrate [![Build Status](https://travis-ci.org/johnbrett/calibrate.svg?branch=
 
 Micro library for providing uniform json output for RESTful APIs, with error handling.
 
-Feel free to raise an issue or contact me on twitter if you have any questions [@\_johnbrett](https://www.twitter.com/_johnbrett). Beginners, feature requests and bug reports are welcomed.
+Feel free to raise an issue or contact me on twitter if you have any questions [@johnbrett_](https://www.twitter.com/johnbrett_). Beginners, feature requests and bug reports are welcomed.
 
 *Please star if you using this module so I know where to focus my time spent on open source work.*
 
