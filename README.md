@@ -1,6 +1,7 @@
 Calibrate
 =========
 
+[![NPM Version](https://img.shields.io/npm/v/calibrate.svg)](https://npmjs.org/package/calibrate)
 [![Build Status](https://travis-ci.org/johnbrett/calibrate.svg?branch=master)](https://travis-ci.org/johnbrett/calibrate)
 [![Coverage Status](https://coveralls.io/repos/johnbrett/calibrate/badge.svg?branch=master&service=github)](https://coveralls.io/github/johnbrett/calibrate?branch=master)
 [![Dependency Status](https://david-dm.org/johnbrett/calibrate.svg)](https://david-dm.org/johnbrett/calibrate)
