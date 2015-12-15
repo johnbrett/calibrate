@@ -1,7 +1,11 @@
-Calibrate [![Build Status](https://travis-ci.org/johnbrett/calibrate.svg?branch=master)](https://travis-ci.org/johnbrett/calibrate) [![Dependency Status](https://david-dm.org/johnbrett/calibrate.svg)](https://david-dm.org/johnbrett/calibrate)
+Calibrate
 =========
 
-Micro library for providing uniform json output for RESTful APIs, with error handling.
+[![Build Status](https://travis-ci.org/johnbrett/calibrate.svg?branch=master)](https://travis-ci.org/johnbrett/calibrate)
+[![Coverage Status](https://coveralls.io/repos/johnbrett/calibrate/badge.svg?branch=master&service=github)](https://coveralls.io/github/johnbrett/calibrate?branch=master)
+[![Dependency Status](https://david-dm.org/johnbrett/calibrate.svg)](https://david-dm.org/johnbrett/calibrate)
+
+*Micro library for providing uniform json output for RESTful APIs, with error handling.*
 
 Feel free to raise an issue or contact me on twitter if you have any questions [@johnbrett_](https://www.twitter.com/johnbrett_). Beginners, feature requests and bug reports are welcomed.
 
