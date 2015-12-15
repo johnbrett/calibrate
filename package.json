@@ -4,9 +4,10 @@
   "description": "Standard JSON outputs for RESTful APIs",
   "main": "index.js",
   "scripts": {
-    "test": "node ./node_modules/lab/bin/lab -c -a code -L",
-    "test-cov": "node_modules/lab/bin/lab -a code -t 100 -L",
-    "test-cov-html": "node_modules/lab/bin/lab -a code -r html -o coverage.html -L"
+    "test": "lab -c -a code -L",
+    "test-cov": "lab -a code -t 100 -L",
+    "test-cov-html": "lab -a code -r html -o coverage.html -L",
+    "coverage": "lab -s -r lcov | coveralls"
   },
   "keywords": [
     "json",
@@ -29,6 +30,7 @@
   },
   "devDependencies": {
     "code": "^2.0.1",
+    "coveralls": "^2.11.6",
     "hapi": "^11.1.2",
     "lab": "^8.0.0"
   },
