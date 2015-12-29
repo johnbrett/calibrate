@@ -61,9 +61,12 @@ Calibrate.decorate // register as a hapijs plugin
 
 Example in Hapijs:
 ```javascript
+'use strict';
+
 const Hapi = require('hapi');
 const Calibrate = require('calibrate');
 const server = new Hapi.Server();
+
 server.connection({ port: 3000 });
 
 server.register([
