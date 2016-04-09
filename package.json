@@ -1,6 +1,6 @@
 {
   "name": "calibrate",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Standard JSON outputs for RESTful APIs",
   "main": "index.js",
   "scripts": {
