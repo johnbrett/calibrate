@@ -57,6 +57,11 @@ Calibrate.error(data)
 **/
 Calibrate.decorate // register as a hapijs plugin
 
+/**
+ * If decorating your server using a Glue (https://github.com/hapijs/glue) manifest,
+ * you can use `calibrate/decorate` as the plugin name. 
+ * Background: https://github.com/johnbrett/calibrate/issues/55
+ **/
 ```
 
 Example in Hapijs:
