@@ -4,9 +4,9 @@ const Calibrate = require('./index');
 
 module.exports = function (server, options, next) {
 
-    const decorator = function (res){
+    const decorator = function (res, meta, options){
 
-        return this.response(Calibrate(res));
+        return this.response(Calibrate(res, meta, options));
     };
     server.decorate('reply', 'calibrate', decorator);
 
