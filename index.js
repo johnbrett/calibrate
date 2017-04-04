@@ -46,8 +46,8 @@ internals.response = module.exports.response = function (data, _meta, _options) 
     if (Defined(data)) {
         return {
             statusCode: 200,
-            data: data,
-            meta: meta
+            data,
+            meta
         };
     }
 
