@@ -61,6 +61,8 @@ internals.response = function (data, _meta, _options) {
 };
 
 module.exports = internals.calibrate;
+module.exports.error = internals.error;
+module.exports.response = internals.response;
 
 module.exports.hapi = {
     name: 'calibrate',
