@@ -12,7 +12,7 @@ const internals = {};
  * @param options
  * @returns {*}
  */
-internals.calibrate = module.exports = function (data, meta, options) {
+internals.calibrate = function (data, meta, options) {
 
     if (data instanceof Error) {
         return internals.error(data);
@@ -25,7 +25,7 @@ internals.calibrate = module.exports = function (data, meta, options) {
  * If error is a Boom error object, return as is
  * Else return a Boom badImplementation error object
  */
-internals.error = module.exports.error = function (err) {
+internals.error = function (err) {
 
     if (err.isBoom) {
         return err;
@@ -38,7 +38,7 @@ internals.error = module.exports.error = function (err) {
  * If data is defined and non-null, wrap with statusCode and meta object properties
  * Else return Boom notFound error object
  */
-internals.response = module.exports.response = function (data, _meta, _options) {
+internals.response = function (data, _meta, _options) {
 
     const meta = _meta || {};
     const options = _options || {};
@@ -46,22 +46,45 @@ internals.response = module.exports.response = function (data, _meta, _options) 
     if (Defined(data)) {
         return {
             statusCode: 200,
-            data: data,
-            meta: meta
+            data,
+            meta
         };
     }
 
-    const context = options.context ? options.context + ' ' : '';
-    const returnString = (options.return_string || options.returnString)
-                        || 'The ' + context + 'resource with that ID does not exist or has already been deleted.';
+    const context = options.context ? `${options.context} ` : '';
+    const returnString =
+        options.return_string ||
+        options.returnString ||
+        `The ${context}resource with that ID does not exist or has already been deleted.`;
+
     return Boom.notFound(returnString);
 };
 
-/**
- * When used in plugin.register, will decorate the reply interface with the calibrate method
- * so reply.calibrate() can be called
- */
-const Decorate = require('./decorate');
-internals.decorate = module.exports.decorate = Decorate;
+module.exports = internals.calibrate;
+module.exports.error = internals.error;
+module.exports.response = internals.response;
 
-internals.decorate.attributes = Decorate.attributes;
+module.exports.hapi = {
+    name: 'calibrate',
+    register(server, { onResponse = true }) {
+
+        if (onResponse) {
+            const preResponse = function (request, h) {
+
+                const data = request.response.isBoom ? request.response : request.response.source;
+                return internals.calibrate(data);
+            };
+
+            server.ext('onPreResponse', preResponse);
+
+            return;
+        }
+
+        const calibrateDeocorator = function (data) {
+
+            return internals.calibrate(data);
+        };
+
+        server.decorate('toolkit', 'calibrate', calibrateDeocorator);
+    }
+};
