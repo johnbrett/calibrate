@@ -1,6 +1,6 @@
 'use strict';
 
-const Boom = require('boom');
+const Boom = require('@hapi/boom');
 const Defined = require('isdefined').has_value;
 
 const internals = {};
@@ -61,7 +61,9 @@ internals.response = function (data, _meta, _options) {
 };
 
 module.exports = internals.calibrate;
+
 module.exports.error = internals.error;
+
 module.exports.response = internals.response;
 
 module.exports.hapi = {

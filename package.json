@@ -1,12 +1,12 @@
 {
   "name": "calibrate",
-  "version": "3.2.0",
+  "version": "3.3.0",
   "description": "Standard JSON outputs for RESTful APIs",
   "main": "index.js",
   "scripts": {
-    "test": "lab -c -a code -L",
-    "test-cov": "lab -a code -t 100 -L",
-    "test-cov-html": "lab -a code -r html -o coverage.html -L",
+    "test": "lab -c -a @hapi/code -L",
+    "test-cov": "lab -a @hapi/code -t 100 -L",
+    "test-cov-html": "lab -a @hapi/code -r html -o coverage.html -L",
     "coverage": "lab -s -r lcov | coveralls"
   },
   "keywords": [
@@ -35,14 +35,14 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "boom": "^7.1.1",
+    "@hapi/boom": "^9.0.0",
     "isdefined": "^1.0.1"
   },
   "devDependencies": {
-    "code": "^5.1.2",
-    "coveralls": "^3.0.0",
-    "hapi": "^17.2.0",
-    "lab": "^15.2.0"
+    "@hapi/code": "^8.0.1",
+    "coveralls": "^3.0.9",
+    "@hapi/hapi": "^19.0.5",
+    "@hapi/lab": "^22.0.3"
   },
   "directories": {
     "test": "test"

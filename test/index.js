@@ -1,10 +1,11 @@
 'use strict';
 
-const Code = require('code');
-const Lab = require('lab');
+const Code = require('@hapi/code');
+const Lab = require('@hapi/lab');
 const Calibrate = require('../index.js');
-const Boom = require('boom');
-const Hapi = require('hapi');
+const Boom = require('@hapi/boom');
+const Hapi = require('@hapi/hapi');
+
 const lab = exports.lab = Lab.script();
 
 const expect = Code.expect;
