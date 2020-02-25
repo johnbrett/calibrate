@@ -2,8 +2,6 @@ language: node_js
 sudo: false
 
 node_js:
-  - "8.9.0"
-  - "9"
   - "node"
 
 script:
@@ -11,4 +9,3 @@ script:
 
 after_script:
   npm run coverage
-
