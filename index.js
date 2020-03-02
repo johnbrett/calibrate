@@ -82,11 +82,11 @@ module.exports.hapi = {
             return;
         }
 
-        const calibrateDeocorator = function (data) {
+        const calibrateDecorator = function (data, meta) {
 
-            return internals.calibrate(data);
+            return internals.calibrate(data, meta);
         };
 
-        server.decorate('toolkit', 'calibrate', calibrateDeocorator);
+        server.decorate('toolkit', 'calibrate', calibrateDecorator);
     }
 };
