@@ -22,6 +22,15 @@ const validOutput = JSON.stringify({
     },
     meta: {}
 });
+const validOutputWithMeta = JSON.stringify({
+    statusCode: 200,
+    data: {
+        'message': 'test'
+    },
+    meta: {
+        'count': 50
+    }
+});
 
 describe('Calibrate', () => {
 
@@ -126,6 +135,31 @@ describe('Calibrate', () => {
         const res = await server.inject({ method: 'GET', url: '/' });
 
         expect(res.payload).to.equal(validOutput);
+    });
+
+    it('response using hapi decorator includes meta', async () => {
+
+        const server = new Hapi.Server();
+
+        await server.register({
+            plugin: Calibrate.hapi,
+            options: { onResponse: false }
+        });
+
+        server.route({
+            method: 'GET',
+            path: '/',
+            config: {
+                handler: function (request, h) {
+
+                    return h.calibrate({ message: 'test' }, { count: 50 });
+                }
+            }
+        });
+
+        const res = await server.inject({ method: 'GET', url: '/' });
+
+        expect(res.payload).to.equal(validOutputWithMeta);
     });
 
     it('adds default calibrate wrapper to response', async () => {
